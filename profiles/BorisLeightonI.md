@@ -15,4 +15,4 @@ Hola, mi nombre es Boris soy de Chile y me encuentro en una reconversión labora
 - Javascript: ⭐️⭐️⭐️⭐️⭐️
 - CSS: ⭐️⭐️⭐️⭐️
 - HTML: ⭐️⭐️⭐️⭐️
-- Git: ⭐️⭐️⭐️⭐️
+- Git: ⭐️⭐️⭐️
