@@ -8,7 +8,7 @@
 
 ## Estudiantes 👩🏻‍💻🧑🏼‍💻
 
-- Estudiante 1
+- [Noah Zapata Puerta](profiles/noah-zapata.md)
 - Estudiante 2
 - Estudiante 3
 - ...
