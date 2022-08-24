@@ -8,7 +8,7 @@
 
 ## Estudiantes 👩🏻‍💻🧑🏼‍💻
 
-- Estudiante 1
+- Jairo Jair Toro Novellis
 - Estudiante 2
 - Estudiante 3
 - ...
