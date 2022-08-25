@@ -1,18 +1,13 @@
-# JHON VASQUEZ
-
-vivo en Bogotá D.C., naci en sogamoso boyaca hace 29 años.
-
+# NOMBRE APELLIDO
+Cuentanos algo sobre ti que te gustara todos conocieramos: Quien eres? que te gusta hacer? De donde eres?
 ## Perfiles sociales
-
-- [Github](https://github.com/Wintrhop)
+- [Github](https://github.com/makeitrealcamp/)
 - [Linkedin](https://www.linkedin.com/company/make-it-real-camp/)
 - [Website](https://gogole.com/)
-
 ## Experiencia Tecnica
-> En una escala de 1 a 5 como te sientes tecnicamente en esto temas:  ⭐️⭐️⭐️⭐️⭐️
-
-- Programacion: ⭐️⭐️
-- Javascript: ⭐️⭐️⭐️
-- CSS: ⭐️⭐️
-- HTML: ⭐️⭐️
-- Git: ⭐️
+> En una escala de 1 a 5 como te sientes tecnicamente en esto temas:  :star:️:star:️:star:️:star:️:star:️
+- Programacion: :star:️
+- Javascript: :star:️
+- CSS: :star:️
+- HTML: :star:️
+- Git: :star:
