@@ -105,7 +105,7 @@ console.log(test(3)); */
 
 // Destructuring
 
-const person = {
+/* const person = {
   name: "Jhon",
   lastname: "Doe",
   age: 33,
@@ -122,4 +122,4 @@ const students = ["Jairo", "Ruben", "Camila", "Esteban", "Omar"];
 
 const [x, y, z] = students;
 
-console.log("destructuring array:", z);
+console.log("destructuring array:", z); */
