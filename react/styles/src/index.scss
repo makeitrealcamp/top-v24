@@ -1,0 +1,20 @@
+/* abstracts */
+@import "./stylesSASS/abstracts/variables.scss";
+@import "./stylesSASS/abstracts/mixins.scss";
+
+/* base */
+@import "./stylesSASS/base/base.scss";
+@import "./stylesSASS/base/resets.scss";
+
+/* components */
+@import "./stylesSASS/components/Button.scss";
+
+/* global */
+
+.primary-color {
+  background: blueviolet
+}
+
+.App {
+  display: flex;
+}
