@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     //GET
-    axios.get("https://jsonplaceholder.typicode.com/posts")
+    axios.get(`${process.env.REACT_APP_API_URL}posts`)
       .then((res) => {
         //entra si el status es entre 100 - 399 - positivo
         setPosts(res.data)
@@ -28,6 +28,24 @@ function App() {
       })
   }, [])
 
+
+  //POST
+  const sendPost = () => {
+    axios.post(`${process.env.REACT_APP_API_URL}posts`,
+      {
+        title: "Clase http",
+        body: "Cualquier cosa"
+      }, {
+      headers: {
+        "Content-type": "application/json; charset=UTF=8",
+      }
+    })
+  }
+
+  //PUT
+
+  //DELETE
+
   /*   fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
       .then(json => console.log("FETCH", json)) */
@@ -36,6 +54,7 @@ function App() {
   return (
     <div className="App">
       <h1>Clase de HTTP y peticiones a un servidor</h1>
+      <button onClick={sendPost}>Petición POST</button>
       {loading ? <p>Loading...</p> : posts.map((item) => {
         return (
           <div key={item.id}>
