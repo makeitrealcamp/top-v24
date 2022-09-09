@@ -2,32 +2,47 @@ import axios from "axios"
 import { useState } from "react"
 
 const Form = () => {
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [done, setDone] = useState(false)
+  // const [title, setTitle] = useState("")
+  // const [description, setDescription] = useState("")
+  // const [done, setDone] = useState(false)
 
-  // const handleChange = (event) => {
-  //   console.dir(event.target.value)
-  //   setTitle(event.target.value)
-  // }
+  const [data, setData] = useState({
+    title: "",
+    description: "",
+    done: false,
+  })
+  const [message, setMessage] = useState("")
+
+
+
+  const handleChange = (e) => {
+    const { name, value, checked, type } = e.target
+    setMessage("")
+
+    setData({
+      ...data,
+      [name]: type === "checkbox" ? checked : value
+    })
+  }
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    alert("Sus datos fueron enviados correctament")
-
-    axios.post("https://jsonplaceholder.typicode.com/todos",
-      { title, description, done }
+    axios.post("https://jsonplaceholder.typicode.com/todos", data
     ).then((res) => {
-      alert("Sus datos fueron enviados exitosamente")
-      setTitle("")
-      setDescription("")
-      setDone(false)
+      setMessage("Post creado con éxito")
+      setData({
+        title: "",
+        description: "",
+        done: false,
+      })
     }).catch(() => {
       alert("No pudimos enviar sus datos")
     })
 
   }
+  const { title, description, done } = data
 
   return (
     <>
@@ -37,27 +52,30 @@ const Form = () => {
           id="title"
           name="title"
           type="text"
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={(e) => handleChange(e)}
           value={title}
+          required
         />
         <label htmlFor="description">Descripción</label>
         <input
           id="description"
           name="description"
           type="text"
-          onChange={(event) => setDescription(event.target.value)}
+          onChange={(e) => handleChange(e)}
           value={description}
+          required
         />
         <label htmlFor="done">Estas seguro?</label>
         <input
           id="done"
           name="done"
           type="checkbox"
-          onChange={(event => done ? setDone(false) : setDone(true))}
+          onChange={(e) => handleChange(e)}
           checked={done}
         />
-        <button type="submit">Enviar</button>
+        <button type="submit" disabled={!done}>Enviar</button>
       </form>
+      {message && message}
     </>
   )
 
