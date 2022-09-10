@@ -1,0 +1,10 @@
+.darkStyle {
+  background: #000000;
+  color: #ffffff;
+}
+
+.ligthStyle {
+  background: #ffffff;
+  color: #000000;
+  border: 4px solid black
+}
