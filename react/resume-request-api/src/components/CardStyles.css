@@ -1,0 +1,11 @@
+.gif-card {
+  border: solid 1px black;
+  border-radius: 16px;
+  width: 100%;
+  display: inline-block;
+}
+
+.gif-card h2 {
+  color: brown;
+  font-size: 24px;
+}

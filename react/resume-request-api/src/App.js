@@ -1,8 +1,7 @@
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
-import Product from './pages/Product';
 import NotFound from './pages/404';
-import Private from './pages/Private';
+import Gif from './pages/Gif';
 import './App.css';
 
 // Estructura de una URL
@@ -15,25 +14,22 @@ import './App.css';
 //snake_case
 
 
-function PrivateRoute({ children }) {
-  const token = "23q45joqi3efj40qwefj";
-  return token ? children : <Navigate to="/" />
-}
+// function PrivateRoute({ children }) {
+//   const token = "23q45joqi3efj40qwefj";
+//   return token ? children : <Navigate to="/" />
+// }
 
 function App() {
   return (
     <>
       <nav>
         <Link to='/'>Home</Link>
-        <Link to='/product'>Producto</Link>
-        <Link to='/private'>Private</Link>
+        <Link to='/gif'>Gif</Link>
+
       </nav>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/product' element={<Product />}>
-          <Route path=':brand' element={<Product />} />
-        </Route>
-        <Route path='/private' element={<PrivateRoute><Private /></PrivateRoute>} />
+        <Route path='/gif' element={<Gif />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>
