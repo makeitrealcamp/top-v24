@@ -10,7 +10,7 @@ module.exports = {
 
     User.create(newUser)
       .then((user) => {
-        res.status(201).json(user);
+        res.status(201).json({ message: "User created", data: user });
       })
       .catch((err) => {
         res.status(400).json(err);
