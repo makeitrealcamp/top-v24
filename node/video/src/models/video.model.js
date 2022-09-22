@@ -11,7 +11,12 @@ const videoSchema = new Schema(
     url: String,
     description: String,
     isCopy: Boolean,
-    published: Date
+    published: Date,
+    user: {
+      type: Schema.Types.ObjectId, // Usuario con id único
+      ref: "User",
+      require: true
+    }
   }, {
   timestamps: true
 }

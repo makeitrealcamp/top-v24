@@ -1,5 +1,6 @@
 const { update } = require("../models/video.model")
 const Video = require("../models/video.model")
+const User = require("../models/user.model")
 
 module.exports = {
   //GET - list 
@@ -24,7 +25,10 @@ module.exports = {
   show(req, res) {
     const { videoId } = req.params
 
-    Video.findById(videoId)
+    Video.findById(videoId).populate({
+      path: "user",
+      select: "name email"
+    })
       .then((video) => {
         res.status(200).json({ message: "Video found", data: video })
       })
@@ -37,14 +41,28 @@ module.exports = {
 
   //POST
   create(req, res) {
+    const { userId } = req.params
     const data = req.body
+    let user
+
+    User.findById(userId)
+      .then((responseUser) => {
+        user = responseUser
+      })
+      .catch(() => {
+        throw new Error("Usuario invalido")
+      })
 
     const newVideo = {
       ...data,
+      user: userId
     }
 
     Video.create(newVideo)
       .then((video) => {
+        user.videos.push(video);
+        user.save({ validateBeforeSave: false })
+
         res.status(201).json({ message: "Video created", data: video })
       })
       .catch((err) => {

@@ -51,6 +51,10 @@ const userSchema = new Schema(
     working: {
       type: Boolean,
       default: false
+    },
+    videos: {
+      type: [{ type: Schema.Types.ObjectId, ref: "video" }],
+      require: false
     }
   },
   { timestamps: true }
