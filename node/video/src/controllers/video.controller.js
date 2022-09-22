@@ -12,7 +12,10 @@ module.exports = {
 
   // GET
   list(req, res) {
-    Video.find()
+    Video.find().populate({
+      path: "user",
+      select: "name email"
+    })
       .then((video) => {
         res.status(200).json({ message: "Videos found", data: video })
       })
@@ -22,52 +25,48 @@ module.exports = {
   },
 
   // GET:id
-  show(req, res) {
-    const { videoId } = req.params
+  async show(req, res) {
+    try {
+      const { videoId } = req.params
 
-    Video.findById(videoId).populate({
-      path: "user",
-      select: "name email"
-    })
-      .then((video) => {
-        res.status(200).json({ message: "Video found", data: video })
+      const video = await Video.findById(videoId).populate({
+        path: "user",
+        select: "name email -_id"
       })
-      .catch((err) => {
-        res.status(400).json({ message: "Video not found", data: err })
-      })
+
+      res.status(200).json({ message: "Video found", data: video })
+    } catch {
+      (err)
+      res.status(400).json({ message: "Video not found", data: err })
+    }
 
   },
 
 
   //POST
-  create(req, res) {
-    const { userId } = req.params
-    const data = req.body
-    let user
+  async create(req, res) {
+    try {
+      const { userId } = req.params
+      const data = req.body
+      const user = await User.findById(userId)
 
-    User.findById(userId)
-      .then((responseUser) => {
-        user = responseUser
-      })
-      .catch(() => {
+      if (!user) {
         throw new Error("Usuario invalido")
-      })
+      }
 
-    const newVideo = {
-      ...data,
-      user: userId
+      const newVideo = {
+        ...data,
+        user: userId
+      }
+
+      const video = await Video.create(newVideo)
+      user.videos.push(video)
+      await user.save({ validateBeforeSave: false })
+
+      res.status(201).json({ message: "Video created", data: video })
+    } catch (err) {
+      res.status(400).json({ message: "Video could not be created", data: err })
     }
-
-    Video.create(newVideo)
-      .then((video) => {
-        user.videos.push(video);
-        user.save({ validateBeforeSave: false })
-
-        res.status(201).json({ message: "Video created", data: video })
-      })
-      .catch((err) => {
-        res.status(400).json({ message: "Video could not be created", data: err })
-      })
   },
 
   // PUT:id
