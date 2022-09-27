@@ -24,7 +24,7 @@ const userSchema = new Schema(
       match: [emailRegex, "El email no es valido"],
       validate: [{
         validator(value) {
-          return models.User.findOne({ email: value })
+          return models.user.findOne({ email: value })
             .then((user) => !user) //user === null = falsyValue
             .catch(() => false)
         },
@@ -52,11 +52,14 @@ const userSchema = new Schema(
       type: Boolean,
       default: false
     },
-
+    comments: {
+      type: [{ type: Schema.Types.ObjectId, ref: "comment" }],
+      required: false
+    }
   },
   { timestamps: true }
 );
 
-const User = model("User", userSchema);
+const User = model("user", userSchema);
 
 module.exports = User;
