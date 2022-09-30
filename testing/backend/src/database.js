@@ -1,19 +1,39 @@
 const mongoose = require("mongoose")
 
-function connect() {
+let connection
+
+async function connect() {
+  if (connection) return
+
   const mongoUri = process.env.MONGO_URI
 
-  mongoose.connect(mongoUri)
+  connection = mongoose.connection
 
-  mongoose.connection.once("open", () => {
+  connection.once("open", () => {
     console.log("Connection with mongo OK")
   })
 
-  mongoose.connection.on("error", (error) => {
+  connection.on("disconnected", () => {
+    console.log("Disconnected successfull")
+  })
+
+  connection.on("error", (error) => {
     console.log("Something went wrong!", error)
   })
 
-  return mongoose.connection
+  await mongoose.connect(mongoUri)
 }
 
-module.exports = { connect }
+async function disconnected() {
+  if (!connection) return
+
+  await mongoose.disconnect()
+}
+
+async function cleanup() {
+  for (const collection in connection.collections) {
+    await connection.collections[collection].deleteMany({})
+  }
+}
+
+module.exports = { connect, disconnected, cleanup }
