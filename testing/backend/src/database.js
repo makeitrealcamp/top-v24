@@ -21,7 +21,7 @@ async function connect() {
     console.log("Something went wrong!", error)
   })
 
-  await mongoose.connect(mongoUri)
+  await mongoose.connect("mongodb+srv://root:root@cluster0.fvoan6j.mongodb.net/auth-test?retryWrites=true&w=majority")
 }
 
 async function disconnected() {

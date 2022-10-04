@@ -21,7 +21,7 @@ module.exports = {
 
       res.status(201).json({ message: "User created successfully", data: { email, token } })
     } catch (err) {
-      res.status(400).json({ message: "User could not created", error: err })
+      res.status(400).json({ message: "User could not created", error: err.message })
     }
   },
 

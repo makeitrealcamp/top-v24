@@ -1,11 +1,12 @@
 const { model, Schema, models } = require("mongoose")
-
+const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 
 const userSchema = new Schema(
   {
     email: {
       type: String,
-      required: true,
+      required: [true, "el correo es requerido"],
+      match: [emailRegex, "el email no es valido"],
       validate: {
         async validator(email) {
           try {
