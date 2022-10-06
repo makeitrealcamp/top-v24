@@ -7,8 +7,6 @@ function App() {
   const [file, setFile] = useState(null)
   const [image, setImage] = useState(null)
 
-  console.log("imagen", image)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -18,7 +16,7 @@ function App() {
       data.append(`file_${i}`, file[i], file[i].name)
     }
 
-    await axios.post("http://localhost:8080/",
+    const res = await axios.post("http://localhost:8080/",
       data,
       {
         headers: {
@@ -26,6 +24,8 @@ function App() {
         }
       }
     )
+
+    console.log(res)
   }
 
   const readFile = (file) => {
@@ -39,8 +39,8 @@ function App() {
 
   const handleChange = (event) => {
     //console.dir(event.target.files[0])
-    readFile(event.target.files[0])
-    //setFile(event.target.files)
+    //readFile(event.target.files[0])
+    setFile(event.target.files)
   }
 
   return (
@@ -59,6 +59,7 @@ function App() {
         <input
           type="file"
           accept="image/*"
+          multiple
           name="file"
           id="file"
           onChange={handleChange}
