@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Characters = ({ dataRickMorty }) => {
 
@@ -9,12 +10,18 @@ const Characters = ({ dataRickMorty }) => {
         return (
           <Link href={`/characters/${item.id}`} key={item.id}>
             <div >
-              <img
+              <Image
+                src={item.image}
+                alt="Imagen de rosa"
+                width={350}
+                height={300}
+              />
+              {/*               <img
 
                 src={item.image}
                 alt={`personaje ${item.name}`}
                 loading="lazy"
-              />
+              /> */}
               <h2>{item.name}</h2>
               <a>Ver detalles</a>
             </div>
